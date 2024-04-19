@@ -1,7 +1,7 @@
 export default function Home() {
   return (
     <>
-      쪽지함 페이지
+      게시하기 페이지
     </>
   );
 }
