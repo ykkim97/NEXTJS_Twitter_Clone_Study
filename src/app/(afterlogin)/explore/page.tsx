@@ -16,6 +16,11 @@ export default function Home() {
         <Trend />
         <Trend />
         <Trend />
+        <Trend />
+        <Trend />
+        <Trend />
+        <Trend />
+        <Trend />
       </div>
     </main>
   );
