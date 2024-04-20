@@ -1,7 +1,9 @@
-export default function Home() {
+import Home from "../../home/page";
+
+export default function Page() {
   return (
     <>
-      게시하기 페이지
+      <Home />
     </>
   );
 }
