@@ -7,11 +7,16 @@ import 'dayjs/locale/ko';
 import Link from "next/link";
 import ActionButtons from "./ActionButtons";
 import PostArticle from "./PostArticle";
+import { faker } from "@faker-js/faker";
 
 dayjs.extend(relativeTime);
 dayjs.locale('ko');
 
-export default function Post() {
+type Props = {
+    noImage? : boolean
+}
+
+export default function Post({ noImage } : Props) {
     const target = {
         postId : 1,
         User : {
@@ -22,7 +27,15 @@ export default function Post() {
         },
         createdAt : new Date(),
         content : '안녕하세요~',
-        Images : []
+        Images : [
+            
+        ] as any[],
+    }
+
+    if (Math.random() > 0.5 && !noImage) {
+        target.Images.push(
+            { imageId : 1, link : faker.image.urlLoremFlickr() }
+        )
     }
 
     return (
@@ -48,7 +61,14 @@ export default function Post() {
                     </div>
                     <div>{target.content}</div>
                     <div className={styles.postImageSection}>
-
+                        {target.Images && target.Images.length > 0 && (
+                            <Link 
+                                href={`/${target.User.id}/status/${target.postId}/photo/${target.Images[0].imageId}`}
+                                className={styles.postImageSection}
+                            >
+                                <img src={target.Images[0]?.link} alt="" />
+                            </Link>
+                        )}
                     </div>
                     <ActionButtons />
                 </div>
